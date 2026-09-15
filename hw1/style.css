@@ -41,7 +41,7 @@ h1, h2, h3 {
     font-size:smaller;
 }
 
-#center {
+.class {
     text-align: center;
 }
 
