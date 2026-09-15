@@ -18,7 +18,7 @@ h1, h2, h3 {
 }
 
 .highlight {
-    background-color: yellow;
+    background-color: rgb(255, 255, 168);
     font-weight: bold;
     border-left: 4px solid #000000;
 
