@@ -2,8 +2,14 @@
 
 #main-header {
     background-color: #f16af5;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: white;
     text-align: center;
     border-bottom: 5px solid #000000;
+}
+
+h1, h2, h3 {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgb(0, 208, 255);
 }
 
