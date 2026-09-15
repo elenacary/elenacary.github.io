@@ -1,0 +1,9 @@
+/* style.css */
+
+#main-header {
+    background-color: #f16af5;
+    color: white;
+    text-align: center;
+    border-bottom: 5px solid #000000;
+}
+
