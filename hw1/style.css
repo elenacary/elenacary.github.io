@@ -10,6 +10,7 @@
 
 h1, h2, h3 {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
     color: rgb(0, 208, 255);
 }
 
