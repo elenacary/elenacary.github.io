@@ -1,17 +1,17 @@
 /* style.css */
 p {
-    color:blue;
+    color:rgb(150, 150, 255);
     font-size:16;
 }
 
 .example-class {
-    color: green;
+    color: rgb(75, 250, 75);
     font-size: 30;
 
 }
 
 #example-id {
-    color: red;
+    color: rgb(253, 85, 85);
     font-size: 10;
 
 }
