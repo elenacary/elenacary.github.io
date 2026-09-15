@@ -34,11 +34,11 @@ h1, h2, h3 {
 }
 
 .fontsize {
-    font-size: smaller;
+    font-size:x-small;
 }
 
 .fontsizee {
-    font-size:small;
+    font-size:smaller;
 }
 
 .span {
