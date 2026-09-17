@@ -11,6 +11,7 @@ h1 {
     padding: 20px;
     border-radius: 15px;
     text-align:center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 table {
@@ -26,6 +27,7 @@ th, td {
     padding: 12px;
     text-align: left;
     border-collapse: collapse;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 th {
@@ -37,6 +39,7 @@ a {
     color: rgb(252, 121, 234);
     text-decoration: dotted;
     font-weight: bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 a:hover {
