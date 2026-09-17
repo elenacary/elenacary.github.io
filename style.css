@@ -7,7 +7,7 @@ body {
 
 h1 {
     background-color: rgb(49, 212, 253);
-    color:rgb(250, 101, 200);
+    color:rgb(255, 194, 247);
     padding: 20px;
     border-radius: 15px;
     text-align:center;
@@ -22,19 +22,19 @@ table {
 }
 
 th, td {
-    border: 1px solid rgb(255, 155, 230);
+    border: 1px solid rgb(252, 121, 234);
     padding: 12px;
     text-align: left;
     border-collapse: collapse;
 }
 
 th {
-    background-color: rgb(255, 122, 222);
+    background-color: rgb(252, 121, 234);
 
 }
 
 a {
-    color: rgb(245, 63, 252);
+    color: rgb(252, 121, 234);
     text-decoration: dotted;
     font-weight: bold;
 }
