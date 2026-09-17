@@ -7,7 +7,7 @@ body {
 
 h1 {
     background-color: rgb(49, 212, 253);
-    color:rgb(255, 255, 241);
+    color:rgb(250, 101, 200);
     padding: 20px;
     border-radius: 15px;
     text-align:center;
@@ -18,7 +18,7 @@ table {
     max-width: 600px;
     margin: 20px auto;
     border-collapse: collapse;
-    border: 2px solid pink;
+    border: 2px solid rgb(252, 121, 234);
 }
 
 th, td {
@@ -29,12 +29,12 @@ th, td {
 }
 
 th {
-    background-color: pink;
+    background-color: rgb(255, 122, 222);
 
 }
 
 a {
-    color: aqua;
+    color: rgb(245, 63, 252);
     text-decoration: dotted;
     font-weight: bold;
 }
