@@ -28,13 +28,16 @@ th, td {
 }
 
 th {
+    background-color: pink;
 
 }
 
 a {
-
+    color: aqua;
+    text-decoration: dotted;
+    font-weight: bold;
 }
 
 a:hover {
-
+    text-decoration: underline;
 }
