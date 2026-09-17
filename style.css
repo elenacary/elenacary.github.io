@@ -22,7 +22,9 @@ table {
 }
 
 th, td {
-
+    border: 1px solid pink;
+    padding: 12px;
+    text-align: left;
 }
 
 th {
