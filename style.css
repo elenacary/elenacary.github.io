@@ -1,5 +1,5 @@
 body {
-    background-color: antiquewhite;
+    background-color: rgb(213, 244, 250);
     font-family: Arial, Helvetica, sans-serif;
     margin: 40px;
     color: gray;
@@ -7,7 +7,7 @@ body {
 
 h1 {
     background-color: rgb(49, 212, 253);
-    color:beige;
+    color:rgb(255, 255, 241);
     padding: 20px;
     border-radius: 15px;
     text-align:center;
