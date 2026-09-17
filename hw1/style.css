@@ -54,3 +54,10 @@ table {
     border-collapse: collapse;
     border: 2px solid rgb(252, 121, 234);
 }
+th, td {
+    border: 1px solid rgb(252, 121, 234);
+    padding: 12px;
+    text-align: left;
+    border-collapse: collapse;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
