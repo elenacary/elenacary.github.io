@@ -15,4 +15,9 @@ function takeDamage() {
         statusText.innerText = "You've been hit!";
 
     }
+    else
+    {
+        healthText.innerText = 0;
+        statusText.innerText = "Game Over!";
+    }
 }
