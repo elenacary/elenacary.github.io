@@ -24,7 +24,7 @@ function takeWithdraw() {
 
         document.body.style.backgroundColor = "#5a1a1a";
 
-        document.querySelector("button").disabled = true;
+        document.querySelection("button").disabled = true;
         button.innerText = "Broke";
     }
 }
