@@ -45,14 +45,14 @@ function takeDeposit() {
     }
     else
     {
-        healthText.innerText = 0;
-        statusText.innerText = "Game Over!";
-        statusText.style.color = "#f9331d";
+        healthText.innerText = 1000;
+        statusText.innerText = "You have saved up!";
+        statusText.style.color = "#1df93a";
         statusText.style.fontWeight = "bold";
 
         document.body.style.backgroundColor = "#5a1a1a";
 
         document.querySelection("button").disabled = true;
-        document.querySelection("button").innerText = "Dead";
+        document.querySelection("button").innerText = "Success";
     }
 }
