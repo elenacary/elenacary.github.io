@@ -17,7 +17,7 @@ function takeWithdraw() {
     }
     else
     {
-        healthText.innerText = 0;
+        healthText.innerText = playerHealth;
         statusText.innerText = "You're broke!";
         statusText.style.color = "#f9331d";
         statusText.style.fontWeight = "bold";
@@ -45,7 +45,7 @@ function takeDeposit() {
     }
     else
     {
-        healthText.innerText = 1000;
+        healthText.innerText = playerHealth;
         statusText.innerText = "You have saved up!";
         statusText.style.color = "#1df93a";
         statusText.style.fontWeight = "bold";
