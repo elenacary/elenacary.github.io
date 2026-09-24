@@ -1,25 +1,25 @@
-let playerMoney = 0;
-const addedAmount = 100;
+let playerHealth = 0;
+const damageAmount = 100;
 
-function Deposit() {
-    playerMoney = playerMoney + addedAmount;
+function takeWithdraw() {
+    playerHealth = playerHealth - damageAmount;
 
-    const cashText = document.getElementById("cash-display");
+    const healthText = document.getElementById("health-display");
     const statusText = document.getElementById("status-message");
 
-    healthText.innerText = playerMoney;
+    healthText.innerText = playerHealth;
 
-    if(playerMoney > 0)
+    if(playerHealth > 0)
     {
-        healthText.innerText = playerMoney;
-        statusText.innerText = "You have deposited money!";
+        healthText.innerText = playerHealth;
+        statusText.innerText = "You've withdraw money!";
 
     }
     else
     {
         healthText.innerText = 0;
-        statusText.innerText = "Don't spend any money!";
-        statusText.style.color = "#1df98b";
+        statusText.innerText = "You're broke!";
+        statusText.style.color = "#f9331d";
         statusText.style.fontWeight = "bold";
 
         document.body.style.backgroundColor = "#5a1a1a";
@@ -29,33 +29,30 @@ function Deposit() {
     }
 }
 
-let playerMoney = 0;
-const removedAmount = 20;
+function takeDeposit() {
+    playerHealth = playerHealth + damageAmount;
 
-function Withdraw() {
-    playerMoney = playerMoney - removedAmount;
-
-    const cashText = document.getElementById("cash-display");
+    const healthText = document.getElementById("health-display");
     const statusText = document.getElementById("status-message");
 
-    healthText.innerText = playerMoney;
+    healthText.innerText = playerHealth;
 
-    if(playerMoney < 0)
+    if(playerHealth < 0)
     {
-        healthText.innerText = playerMoney;
-        statusText.innerText = "You have overdrawn!";
+        healthText.innerText = playerHealth;
+        statusText.innerText = "Keep saving up!";
 
     }
     else
     {
         healthText.innerText = 0;
-        statusText.innerText = "Great work saving!";
-        statusText.style.color = "#1df98b";
+        statusText.innerText = "Game Over!";
+        statusText.style.color = "#f9331d";
         statusText.style.fontWeight = "bold";
 
         document.body.style.backgroundColor = "#5a1a1a";
 
         document.querySelection("button").disabled = true;
-        document.querySelection("button").innerText = "Savings";
+        document.querySelection("button").innerText = "Dead";
     }
 }
