@@ -12,7 +12,7 @@ function takeWithdraw() {
     if(playerHealth > 0)
     {
         healthText.innerText = playerHealth;
-        statusText.innerText = "You've withdrawm money!";
+        statusText.innerText = "You've withdrawn money!";
 
     }
     else
