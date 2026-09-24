@@ -17,7 +17,7 @@ function takeWithdraw() {
     }
     else
     {
-        healthText.innerText = playerHealth;
+        healthText.innerText = 0;
         statusText.innerText = "You're broke!";
         statusText.style.color = "#f9331d";
         statusText.style.fontWeight = "bold";
