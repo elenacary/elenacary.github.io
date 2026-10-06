@@ -5,25 +5,32 @@
    ========================================= */
 
 :root {
-  --cream: #faf7f0;
-  --paper: #fffdf8;
-  --rose: #e8c9c5;
-  --dusty-rose: #c58f8b;
-  --pink-light: #f3e5e1;
-  --sage: #aab5a0;
-  --sage-light: #e8ece3;
-  --forest: #465545;
-  --ink: #34362f;
-  --muted: #79786f;
-  --line: #e7dfd4;
-  --white: #ffffff;
+  --cream: #FFF8ED;
+  --paper: #FFFCF5;
+
+  --rose: #E86F7A;
+  --dusty-rose: #F08068;
+  --pink-light: #FFD1D5;
+
+  --sage: #72A94B;
+  --sage-light: #DDF0C8;
+
+  --forest: #315B78;
+
+  --sun-yellow: #F2C14E;
+  --sky-blue: #5FA8D3;
+
+  --ink: #44352F;
+  --muted: #6F6962;
+  --line: #F0D9C9;
+
+  --white: #FFFFFF;
 
   --serif: "Playfair Display", Georgia, serif;
   --sans: "DM Sans", Arial, sans-serif;
 
   --page-width: 1120px;
 }
-
 /* RESET */
 
 * {
