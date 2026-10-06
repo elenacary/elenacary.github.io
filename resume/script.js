@@ -1,73 +1,88 @@
+
 /* =========================================
-   ELENA CARY — INTERACTIONS
+   ELENA CARY — PERSONAL PORTFOLIO
+   Interactive navigation and page details
    ========================================= */
 
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menuToggle");
+  const navigation = document.getElementById("navigation");
+  const yearElement = document.getElementById("year");
 
-/* -----------------------------------------
-   Subtle reveal animation
-   ----------------------------------------- */
+  // Automatically update the copyright year.
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 
-const revealItems = document.querySelectorAll(
-  ".section, .research-item, .experience-card, .life-item"
-);
+  // Mobile navigation menu.
+  if (menuToggle && navigation) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("open");
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation" : "Open navigation"
+      );
+    });
+
+    // Close the mobile menu after selecting a navigation link.
+    navigation.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navigation.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+      });
+    });
+
+    // Close the menu when clicking outside the header.
+    document.addEventListener("click", event => {
+      const clickedInsideHeader = event.target.closest(".site-header");
+
+      if (!clickedInsideHeader) {
+        navigation.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
       }
     });
-  },
-  {
-    threshold: 0.08
+
+    // Close the menu with the Escape key.
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        navigation.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+        menuToggle.focus();
+      }
+    });
   }
-);
 
-revealItems.forEach((item) => {
-  item.classList.add("reveal");
-  revealObserver.observe(item);
-});
+  // Smooth scrolling for in-page links.
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+      const targetId = link.getAttribute("href");
 
+      if (!targetId || targetId === "#") return;
 
-/* -----------------------------------------
-   Smooth navigation
-   ----------------------------------------- */
+      const target = document.querySelector(targetId);
 
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", function (event) {
+      if (target) {
+        event.preventDefault();
 
-    const targetId = this.getAttribute("href");
+        target.scrollIntoView({
+          behavior: window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches
+            ? "auto"
+            : "smooth",
+          block: "start"
+        });
 
-    if (targetId === "#") return;
-
-    const target = document.querySelector(targetId);
-
-    if (!target) return;
-
-    event.preventDefault();
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+        // Update the URL fragment without triggering a second jump.
+        if (window.location.hash !== targetId) {
+          history.pushState(null, "", targetId);
+        }
+      }
     });
   });
 });
-
-
-/* -----------------------------------------
-   Small rotating hero detail
-   ----------------------------------------- */
-
-const circleLink = document.querySelector(".circle-link");
-
-if (circleLink) {
-  circleLink.addEventListener("mouseenter", () => {
-    circleLink.textContent = "↓";
-  });
-
-  circleLink.addEventListener("mouseleave", () => {
-    circleLink.textContent = "↓";
-  });
-}
