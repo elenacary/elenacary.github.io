@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carolina Game Day Checklist</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main class="checklist">
+    <header class="header">
+      <div class="cocky">🐓</div>
+      <div class="eyebrow">University of South Carolina</div>
+      <h1>Carolina Game Day Checklist</h1>
+      <p class="subtitle">
+        A little prep for a whole lot of Gamecock spirit ❤️
+      </p>
+    </header>
+
+    <div class="game-day-banner">
+      🏈 SPURS UP · IT'S GAME DAY! 🏈
+    </div>
+
+    <form class="add-form" id="addForm">
+      <label for="taskInput" class="input-label">
+        Add a game day task
+      </label>
+      <div class="input-row">
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="What else do you need to do?"
+          autocomplete="off"
+          maxlength="200"
+          required
+        />
+        <button type="submit" id="addButton">+ Add</button>
+      </div>
+    </form>
+
+    <section class="progress-section">
+      <div class="progress-info">
+        <span>GAME DAY PREP</span>
+        <span id="progressText">0 of 0 completed</span>
+      </div>
+      <div
+        class="progress-track"
+        id="progressTrack"
+        role="progressbar"
+        aria-label="Tasks completed"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+      >
+        <div id="progressBar"></div>
+      </div>
+    </section>
+
+    <h2 class="list-heading">Your to-do list ✨</h2>
+
+    <ul id="taskList"></ul>
+
+    <footer class="footer">
+      FOREVER TO THEE ❤️
+      <span>Garnet hearts, loud cheers, and Gamecock Saturdays.</span>
+    </footer>
+  </main>
+</body>
+</html>
