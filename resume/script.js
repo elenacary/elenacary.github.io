@@ -1,87 +1,73 @@
 /* =========================================
-   ELENA CARY — PERSONAL PORTFOLIO
-   Interactive navigation and page details
+   ELENA CARY — INTERACTIONS
    ========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menuToggle");
-  const navigation = document.getElementById("navigation");
-  const yearElement = document.getElementById("year");
 
-  // Automatically update the copyright year.
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
+/* -----------------------------------------
+   Subtle reveal animation
+   ----------------------------------------- */
+
+const revealItems = document.querySelectorAll(
+  ".section, .research-item, .experience-card, .life-item"
+);
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.08
   }
+);
 
-  // Mobile navigation menu.
-  if (menuToggle && navigation) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navigation.classList.toggle("open");
+revealItems.forEach((item) => {
+  item.classList.add("reveal");
+  revealObserver.observe(item);
+});
 
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation" : "Open navigation"
-      );
-    });
 
-    // Close the mobile menu after selecting a navigation link.
-    navigation.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navigation.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
-      });
-    });
+/* -----------------------------------------
+   Smooth navigation
+   ----------------------------------------- */
 
-    // Close the menu when clicking outside the header.
-    document.addEventListener("click", event => {
-      const clickedInsideHeader = event.target.closest(".site-header");
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", function (event) {
 
-      if (!clickedInsideHeader) {
-        navigation.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
-      }
-    });
+    const targetId = this.getAttribute("href");
 
-    // Close the menu with the Escape key.
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        navigation.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
-        menuToggle.focus();
-      }
-    });
-  }
+    if (targetId === "#") return;
 
-  // Smooth scrolling for in-page links.
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", event => {
-      const targetId = link.getAttribute("href");
+    const target = document.querySelector(targetId);
 
-      if (!targetId || targetId === "#") return;
+    if (!target) return;
 
-      const target = document.querySelector(targetId);
+    event.preventDefault();
 
-      if (target) {
-        event.preventDefault();
-
-        target.scrollIntoView({
-          behavior: window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-          ).matches
-            ? "auto"
-            : "smooth",
-          block: "start"
-        });
-
-        // Update the URL fragment without triggering a second jump.
-        if (window.location.hash !== targetId) {
-          history.pushState(null, "", targetId);
-        }
-      }
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
   });
 });
+
+
+/* -----------------------------------------
+   Small rotating hero detail
+   ----------------------------------------- */
+
+const circleLink = document.querySelector(".circle-link");
+
+if (circleLink) {
+  circleLink.addEventListener("mouseenter", () => {
+    circleLink.textContent = "↓";
+  });
+
+  circleLink.addEventListener("mouseleave", () => {
+    circleLink.textContent = "↓";
+  });
+}
