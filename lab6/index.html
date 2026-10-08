@@ -1,107 +1,406 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena's Schedule</title>
 
-  <title>Elena's Schedule</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+    <div class="app">
 
-  <!-- =========================================
-       SIDEBAR
-  ========================================== -->
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
 
-  <aside class="sidebar">
+            <div class="sidebar-title">
+                <span>☀️</span>
+                <h1>Elena's<br>Schedule</h1>
+            </div>
 
-    <!-- TITLE -->
+            <div class="search-box">
+                <span>⌕</span>
+                <input type="text" placeholder="Search...">
+            </div>
 
-    <div class="sidebar-title">
+            <nav class="nav">
 
-      <div class="sun-icon">
-        ☀️
-      </div>
+                <button class="nav-button active" data-page="overview">
+                    <span>🏡</span>
+                    Overview
+                </button>
 
-      <div>
-        <h1>Elena's<br>Schedule</h1>
+                <button class="nav-button" data-page="assignments">
+                    <span>📚</span>
+                    Assignments
+                </button>
 
-        <p>life, school & everything</p>
-      </div>
+                <button class="nav-button" data-page="schedule">
+                    <span>🗓️</span>
+                    My Schedule
+                </button>
+
+                <button class="nav-button" data-page="research">
+                    <span>🔬</span>
+                    Research
+                </button>
+
+                <button class="nav-button" data-page="medical">
+                    <span>🩺</span>
+                    Medical School
+                </button>
+
+                <button class="nav-button" data-page="weekend">
+                    <span>🌸</span>
+                    Weekend Plans
+                </button>
+
+                <button class="nav-button" data-page="ideas">
+                    <span>💭</span>
+                    Things I Want To Do
+                </button>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sunset">
+                    <div class="sun">☀</div>
+                    <div class="horizon"></div>
+                </div>
+                <p>Make today a good day.</p>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+
+            <!-- OVERVIEW -->
+            <section class="page active" id="overview">
+
+                <div class="welcome">
+                    <p class="eyebrow">YOUR LITTLE CORNER OF THE INTERNET</p>
+                    <h2>Hi, Elena <span>♡</span></h2>
+                    <p class="subtitle">
+                        Here's what's happening in your world.
+                    </p>
+                </div>
+
+                <div class="cards">
+
+                    <div class="card blue-card">
+                        <div class="card-icon">📚</div>
+                        <h3>Assignments</h3>
+                        <p>Keep up with school and everything that's due.</p>
+                        <button class="card-link" data-page="assignments">
+                            View assignments →
+                        </button>
+                    </div>
+
+                    <div class="card peach-card">
+                        <div class="card-icon">🔬</div>
+                        <h3>Research</h3>
+                        <p>Tuesday + Thursday at the Exercise Oncology Lab.</p>
+                        <button class="card-link" data-page="research">
+                            View research →
+                        </button>
+                    </div>
+
+                    <div class="card green-card">
+                        <div class="card-icon">🩺</div>
+                        <h3>Medical School</h3>
+                        <p>Interviews, preparation, and application tasks.</p>
+                        <button class="card-link" data-page="medical">
+                            View medical school →
+                        </button>
+                    </div>
+
+                    <div class="card yellow-card">
+                        <div class="card-icon">🌷</div>
+                        <h3>This Weekend</h3>
+                        <p>Things to do, people to see, and time to enjoy.</p>
+                        <button class="card-link" data-page="weekend">
+                            View weekend →
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ASSIGNMENTS -->
+            <section class="page" id="assignments">
+
+                <div class="page-header">
+                    <p class="eyebrow">SCHOOL</p>
+                    <h2>Assignments <span>📚</span></h2>
+                    <p>Everything you need to get done.</p>
+                </div>
+
+                <div class="content-box">
+
+                    <div class="list-item">
+                        <input type="checkbox">
+                        <div>
+                            <strong>Microbiology study</strong>
+                            <p>Review enzyme tests + bacterial identification</p>
+                        </div>
+                        <span class="date">Today</span>
+                    </div>
+
+                    <div class="list-item">
+                        <input type="checkbox">
+                        <div>
+                            <strong>Honors thesis</strong>
+                            <p>Work on women's health research podcast</p>
+                        </div>
+                        <span class="date">This week</span>
+                    </div>
+
+                    <div class="list-item">
+                        <input type="checkbox">
+                        <div>
+                            <strong>Interview preparation</strong>
+                            <p>Practice UToledo + South Carolina questions</p>
+                        </div>
+                        <span class="date">This week</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SCHEDULE -->
+            <section class="page" id="schedule">
+
+                <div class="page-header">
+                    <p class="eyebrow">YOUR WEEK</p>
+                    <h2>My Schedule <span>🗓️</span></h2>
+                    <p>A simple look at what's coming up.</p>
+                </div>
+
+                <div class="schedule-grid">
+
+                    <div class="day">
+                        <h3>Monday</h3>
+                        <p>🎓 Classes</p>
+                        <p>📖 Study</p>
+                    </div>
+
+                    <div class="day">
+                        <h3>Tuesday</h3>
+                        <p>🔬 Research</p>
+                        <p>🏃 Exercise</p>
+                    </div>
+
+                    <div class="day">
+                        <h3>Wednesday</h3>
+                        <p>🎓 Classes</p>
+                        <p>📚 Study</p>
+                    </div>
+
+                    <div class="day">
+                        <h3>Thursday</h3>
+                        <p>🔬 Research</p>
+                        <p>🩺 Medical school prep</p>
+                    </div>
+
+                    <div class="day">
+                        <h3>Friday</h3>
+                        <p>✨ Finish the week</p>
+                        <p>🌙 Relax</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESEARCH -->
+            <section class="page" id="research">
+
+                <div class="page-header">
+                    <p class="eyebrow">RESEARCH</p>
+                    <h2>Exercise Oncology <span>🔬</span></h2>
+                    <p>Your research life at USC + Prisma Health.</p>
+                </div>
+
+                <div class="research-box">
+
+                    <div class="research-time">
+                        <span>📅</span>
+                        <div>
+                            <strong>Tuesdays + Thursdays</strong>
+                            <p>Exercise Oncology Lab</p>
+                        </div>
+                    </div>
+
+                    <div class="research-time">
+                        <span>💪</span>
+                        <div>
+                            <strong>Cancer Wellness Program</strong>
+                            <p>Working with cancer survivors through exercise.</p>
+                        </div>
+                    </div>
+
+                    <div class="research-time">
+                        <span>🎙️</span>
+                        <div>
+                            <strong>Honors Thesis</strong>
+                            <p>Women's health research, education, and lived experience.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MEDICAL SCHOOL -->
+            <section class="page" id="medical">
+
+                <div class="page-header">
+                    <p class="eyebrow">MEDICAL SCHOOL</p>
+                    <h2>Future Doctor Era <span>🩺</span></h2>
+                    <p>Keep track of interviews, schools, and preparation.</p>
+                </div>
+
+                <div class="medical-grid">
+
+                    <div class="school-card">
+                        <span>❤️</span>
+                        <h3>UToledo</h3>
+                        <p>Interview preparation + AHEC rotations</p>
+                    </div>
+
+                    <div class="school-card">
+                        <span>🌿</span>
+                        <h3>UofSC</h3>
+                        <p>Greenville + Columbia preparation</p>
+                    </div>
+
+                    <div class="school-card">
+                        <span>💙</span>
+                        <h3>NEOMED</h3>
+                        <p>Community engagement + advocacy</p>
+                    </div>
+
+                    <div class="school-card">
+                        <span>🌸</span>
+                        <h3>UCCOM</h3>
+                        <p>Physician in Society + oncology interests</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WEEKEND -->
+            <section class="page" id="weekend">
+
+                <div class="page-header">
+                    <p class="eyebrow">WEEKEND</p>
+                    <h2>Weekend Plans <span>🌸</span></h2>
+                    <p>Life outside of school matters too.</p>
+                </div>
+
+                <div class="weekend-list">
+
+                    <div class="weekend-item">
+                        <span>🚲</span>
+                        <div>
+                            <strong>Go for a bike ride</strong>
+                            <p>Find a pretty route and get outside.</p>
+                        </div>
+                    </div>
+
+                    <div class="weekend-item">
+                        <span>🍳</span>
+                        <div>
+                            <strong>Cook something fun</strong>
+                            <p>Try a new recipe.</p>
+                        </div>
+                    </div>
+
+                    <div class="weekend-item">
+                        <span>👯</span>
+                        <div>
+                            <strong>See friends</strong>
+                            <p>Make time for people you love.</p>
+                        </div>
+                    </div>
+
+                    <div class="weekend-item">
+                        <span>🛍️</span>
+                        <div>
+                            <strong>Go thrifting</strong>
+                            <p>Look for something unexpected.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- IDEAS -->
+            <section class="page" id="ideas">
+
+                <div class="page-header">
+                    <p class="eyebrow">LIFE LIST</p>
+                    <h2>Things I Want To Do <span>💭</span></h2>
+                    <p>Little ideas, big dreams, random things I don't want to forget.</p>
+                </div>
+
+                <div class="idea-box">
+
+                    <div class="idea">
+                        <span>✈️</span>
+                        <p>Take a spontaneous trip somewhere new</p>
+                    </div>
+
+                    <div class="idea">
+                        <span>🏊‍♀️</span>
+                        <p>Learn how to swim for a triathlon</p>
+                    </div>
+
+                    <div class="idea">
+                        <span>🎞️</span>
+                        <p>Have a movie night with friends</p>
+                    </div>
+
+                    <div class="idea">
+                        <span>🌅</span>
+                        <p>Watch the sunrise somewhere beautiful</p>
+                    </div>
+
+                    <div class="idea">
+                        <span>🍝</span>
+                        <p>Learn a new pasta recipe</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
 
     </div>
 
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 
-    <!-- SEARCH -->
-
-    <div class="search-box">
-
-      <span>⌕</span>
-
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Search..."
-      >
-
-    </div>
-
-
-    <!-- NAVIGATION -->
-
-    <nav>
-
-      <p class="nav-label">
-        MY LIFE
-      </p>
-
-
-      <button
-        class="nav-button active"
-        data-page="overview"
-      >
-
-        <span class="nav-icon">🏡</span>
-
-        <span>Overview</span>
-
-      </button>
-
-
-      <button
-        class="nav-button"
-        data-page="assignments"
-      >
-
-        <span class="nav-icon">📚</span>
-
-        <span>Assignments</span>
-
-        <span class="nav-number">4</span>
-
-      </button>
-
-
-      <button
-        class="nav-button"
-        data-page="schedule"
-      >
-
-        <span class="nav-icon">🗓️</span>
-
-        <span>My Sch
-```
+</body>
+</html>
