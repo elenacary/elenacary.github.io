@@ -10,9 +10,17 @@
             <h3>Local Storage (Strings/Numbers)</h3>
             <p>Level: <span id="level">1</span></p>
             <button onclick="levelUp()">Level Up</button>
+            <button onclick="saveLevel1()">Save</button>
+            <button onclick="loadLevel1()">Load</button>
         </div>
 
+        
         <div class="box">
+            <h3>Temp Storage</h3>
+            <p>Current Data: <span id="data">Empty</span></p>
+            <input type="text" id="data-input" placeholder="Type a message">
+            <button onclick="saveData()">Temp Save</button>
+            <button onclick="loadData()">Temp Load</button>
 
         </div>
 
