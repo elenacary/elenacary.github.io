@@ -4,7 +4,7 @@ let linesOfCode = 0;
 let clickPower = 1;
 let upgradeCost = 50;
 
-let pinkmouse = 1;
+let clickPower = 1;
 let pinkmouseCost = 50;
 
 
@@ -36,7 +36,7 @@ function buyPinkmouse()
     if(linesOfCode >= pinkmouseCost)
     {
         linesOfCode = linesOfCode - pinkmouseCost;
-        pinkmouse = pinkmouse + 1;
+        clickPower = clickPower + 1;
         pinkmouseCost = pinkmouseCost * 1.5;
         updateScreen();
     }
