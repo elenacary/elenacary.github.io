@@ -36,7 +36,7 @@ function buyPinkmouse()
     if(linesOfCode >= pinkmouseCost)
     {
         linesOfCode = linesOfCode - pinkmouseCost;
-        clickPower = clickPower + 1;
+        pinkmouse = pinkmouse + 1;
         pinkmouseCost = pinkmouseCost * 1.5;
         updateScreen();
     }
