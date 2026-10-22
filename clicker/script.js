@@ -4,6 +4,10 @@ let linesOfCode = 0;
 let clickPower = 1;
 let upgradeCost = 50;
 
+let pinkmouse = 1;
+let pinkmouseCost = 50;
+
+
 let interns = 0;
 let internCost = 100;
 
@@ -23,6 +27,17 @@ function buyKeyboard()
         linesOfCode = linesOfCode - upgradeCost;
         clickPower = clickPower + 1;
         upgradeCost = upgradeCost * 1.5;
+        updateScreen();
+    }
+}
+
+function buyPinkmouse()
+{
+    if(linesOfCode >= pinkmouseCost)
+    {
+        linesOfCode = linesOfCode - pinkmouseCost;
+        clickPower = clickPower + 1;
+        pinkmouseCost = pinkmouseCost * 1.5;
         updateScreen();
     }
 }
