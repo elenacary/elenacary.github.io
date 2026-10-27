@@ -31,3 +31,13 @@ function hitTarget()
     score++;    //score = score + 1;
     scoreDisplay.innerText = score;
 }
+
+funciton endGame()
+{
+    clearInterval(timerId);
+
+    targetElement.style.display = "none"
+    startButton.disabled = false;
+
+    alert("*WHISTLE* You score: " + score);
+}
