@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Everyday Edit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="#" data-page="home">
+    the everyday <em>edit.</em>
+  </a>
+
+  <nav class="desktop-nav">
+    <button data-page="move">MOVE</button>
+    <button data-page="daily">DAILY EDIT</button>
+    <button data-page="recipes">RECIPES</button>
+    <button data-page="spaces">SPACES</button>
+    <button data-page="holiday">HOLIDAY</button>
+    <button data-page="saved">SAVED <span id="saved-count">0</span></button>
+  </nav>
+
+  <button class="search-toggle" id="search-toggle">⌕</button>
+  <button class="menu-toggle" id="menu-toggle">☰</button>
+</header>
+
+<div class="search-panel" id="search-panel">
+  <input id="search-input" type="search"
+    placeholder="Search workouts, outfits, recipes, spaces...">
+  <button id="search-submit">SEARCH</button>
+</div>
+
+<main id="app">
+
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">A LITTLE INSPIRATION FOR EVERYDAY LIVING</p>
+
+      <h1>Make room for<br><i>the good stuff.</i></h1>
+
+      <p class="hero-intro">
+        Ideas to move, make, wear, cook, collect, and enjoy.
+        A curated corner of the internet for making the
+        everyday a little more interesting.
+      </p>
+
+      <button class="text-link" data-page="daily">
+        EXPLORE THE EDIT ↗
+      </button>
+    </div>
+
+    <div class="hero-photos">
+      <img class="hero-photo-one"
+        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85"
+        alt="Fashion inspiration">
+
+      <img class="hero-photo-two"
+        src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=700&q=85"
+        alt="Interior inspiration">
+
+      <span class="photo-note">a life well collected ✳</span>
+    </div>
+  </section>
+
+  <section class="intro-strip">
+    <span>GOOD FINDS</span>
+    <span>FRESH IDEAS</span>
+    <span>EVERYDAY RITUALS</span>
+    <span>SEASONAL INSPIRATION</span>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">THE CURRENT MOOD</p>
+        <h2>What's on <i>our radar.</i></h2>
+      </div>
+
+      <p class="section-aside">
+        A few things worth bookmarking, trying, or looking forward to.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+
+      <article class="feature-card large">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85"
+          alt="Outfit inspiration">
+        <div class="feature-caption">
+          <span>01 / THE DAILY EDIT</span>
+          <h3>Outfits for wherever<br>the day takes you.</h3>
+          <button data-page="daily">SEE THE EDIT ↗</button>
+        </div>
+      </article>
+
+      <article class="feature-card">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+          alt="Dessert inspiration">
+        <div class="feature-caption">
+          <span>02 / THE RECIPE EDIT</span>
+          <h3>A little something<br>sweet.</h3>
+          <button data-page="recipes">GET COOKING ↗</button>
+        </div>
+      </article>
+
+      <article class="feature-card">
+        <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=900&q=85"
+          alt="Interior inspiration">
+        <div class="feature-caption">
+          <span>03 / THE SPACE EDIT</span>
+          <h3>Spaces with a story<br>to tell.</h3>
+          <button data-page="spaces">TAKE A LOOK ↗</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="season-banner">
+    <div>
+      <p class="eyebrow">THE SEASONAL EDIT</p>
+      <h2>In our <i>fall era.</i></h2>
+      <p>
+        Cozy layers, dinner with friends, crisp-air walks,
+        and all the little things that make this time of
+        year feel special.
+      </p>
+      <button class="light-link" data-page="holiday">
+        EXPLORE THE SEASON ↗
+      </button>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1507371341162-763b5e419408?auto=format&fit=crop&w=1200&q=85"
+      alt="Autumn inspiration">
+  </section>
+
+</main>
+
+<footer>
+  <a class="wordmark footer-logo" href="#" data-page="home">
+    the everyday <em>edit.</em>
+  </a>
+  <p>A little inspiration for everyday living.</p>
+  <span>MADE FOR THE EVERYDAY ✳</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

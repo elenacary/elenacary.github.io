@@ -1,0 +1,572 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #282820;
+  --cream: #f7f4ec;
+  --pink: #e8a0a6;
+  --blue: #b7d0d9;
+  --yellow: #f1d17c;
+  --coral: #d77e64;
+  --green: #b8c6a2;
+  --line: #d9d4c9;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+}
+
+button, a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* NAVIGATION */
+
+.site-header {
+  height: 82px;
+  padding: 0 5.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: var(--cream);
+  z-index: 10;
+}
+
+.wordmark {
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.wordmark em {
+  color: #c56f65;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 27px;
+}
+
+.desktop-nav button,
+.search-toggle,
+.menu-toggle {
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  font-weight: 700;
+}
+
+.desktop-nav button:hover,
+.desktop-nav button.active {
+  color: #c56f65;
+}
+
+.desktop-nav span {
+  background: var(--yellow);
+  border-radius: 50%;
+  padding: 3px 5px;
+}
+
+.search-toggle {
+  font-size: 30px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* SEARCH */
+
+.search-panel {
+  display: none;
+  padding: 18px 5.5%;
+  background: #eee9df;
+  gap: 12px;
+}
+
+.search-panel.open {
+  display: flex;
+}
+
+.search-panel input {
+  flex: 1;
+  padding: 13px;
+  border: 1px solid var(--line);
+  background: var(--cream);
+}
+
+.search-panel button {
+  border: 0;
+  background: var(--ink);
+  color: white;
+  padding: 0 20px;
+}
+
+/* HOMEPAGE */
+
+.hero {
+  padding: 65px 8% 70px;
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 5%;
+  align-items: center;
+  min-height: 570px;
+}
+
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #9c675d;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font: 500 clamp(48px, 6vw, 82px)/1.02 "Playfair Display", serif;
+  margin: 0 0 23px;
+}
+
+.hero h1 i,
+h2 i {
+  color: #c56f65;
+}
+
+.hero-intro {
+  max-width: 390px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #656258;
+}
+
+.text-link,
+.light-link {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  padding: 0 0 8px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.hero-photos {
+  height: 425px;
+  position: relative;
+}
+
+.hero-photos img {
+  position: absolute;
+  object-fit: cover;
+}
+
+.hero-photo-one {
+  width: 62%;
+  height: 84%;
+  left: 2%;
+  top: 0;
+  transform: rotate(-3deg);
+}
+
+.hero-photo-two {
+  width: 49%;
+  height: 64%;
+  right: 0;
+  bottom: 0;
+  border: 9px solid var(--cream);
+  transform: rotate(3deg);
+}
+
+.photo-note {
+  position: absolute;
+  bottom: 2%;
+  left: 8%;
+  font: italic 17px "Playfair Display";
+  background: var(--yellow);
+  padding: 9px 14px;
+  transform: rotate(-5deg);
+}
+
+/* INTRO STRIP */
+
+.intro-strip {
+  display: flex;
+  justify-content: space-around;
+  padding: 18px 5%;
+  background: #e9a5a8;
+  color: white;
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+/* FEATURE CARDS */
+
+.section-block {
+  padding: 85px 7%;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.section-heading h2,
+.season-banner h2 {
+  font: 500 clamp(38px, 4vw, 55px) "Playfair Display";
+  margin: 0;
+}
+
+.section-aside {
+  max-width: 260px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #777368;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 18px;
+}
+
+.feature-card {
+  height: 440px;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card.large {
+  height: 500px;
+}
+
+.feature-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s;
+}
+
+.feature-card:hover img {
+  transform: scale(1.04);
+}
+
+.feature-card:after {
+  content: "";
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.65));
+}
+
+.feature-caption {
+  position: absolute;
+  bottom: 27px;
+  left: 25px;
+  z-index: 1;
+  color: white;
+}
+
+.feature-caption span {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.feature-caption h3 {
+  font: 500 29px/1.15 "Playfair Display";
+}
+
+.feature-caption button {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid white;
+  color: white;
+  padding-bottom: 6px;
+  font-size: 9px;
+}
+
+/* SEASONAL FEATURE */
+
+.season-banner {
+  margin: 0 7% 90px;
+  background: #c77b67;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: white;
+}
+
+.season-banner > div {
+  padding: 55px 11%;
+}
+
+.season-banner .eyebrow {
+  color: #f8dfbd;
+}
+
+.season-banner h2 i {
+  color: #f4d887;
+}
+
+.season-banner p:not(.eyebrow) {
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.season-banner img {
+  width: 100%;
+  height: 100%;
+  min-height: 330px;
+  object-fit: cover;
+}
+
+.light-link {
+  color: white;
+  border-color: white;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 45px 7%;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer p {
+  font: italic 16px "Playfair Display";
+  color: #777368;
+}
+
+footer > span {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #9c675d;
+}
+
+/* INNER PAGES */
+
+.page-wrap {
+  padding: 55px 7% 90px;
+}
+
+.page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 32px;
+}
+
+.page-top h1 {
+  font: 500 clamp(44px, 6vw, 70px) "Playfair Display";
+  margin: 0;
+}
+
+.page-top p {
+  max-width: 330px;
+  color: #716e64;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.filter-row {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin: 25px 0 32px;
+}
+
+.filter-btn {
+  border: 1px solid #cfc9bc;
+  background: transparent;
+  border-radius: 30px;
+  padding: 9px 16px;
+  font-size: 10px;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--ink);
+  color: white;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.content-card {
+  background: #fffdf8;
+}
+
+.content-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.content-card-body {
+  padding: 18px;
+}
+
+.content-card .category {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #b56e62;
+  font-weight: 700;
+}
+
+.content-card h3 {
+  font: 500 25px "Playfair Display";
+  margin: 9px 0;
+}
+
+.content-card p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #777368;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.card-actions a {
+  font-size: 9px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+.save-btn {
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 17px;
+}
+
+.save-btn.saved {
+  background: var(--pink);
+  color: white;
+}
+
+.empty-state {
+  padding: 60px;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+/* MOBILE */
+
+@media(max-width: 900px) {
+  .desktop-nav {
+    gap: 12px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .content-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 650px) {
+  .site-header {
+    height: 70px;
+    padding: 0 5%;
+  }
+
+  .desktop-nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--cream);
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .desktop-nav.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 50px 7%;
+  }
+
+  .hero-photos {
+    height: 330px;
+  }
+
+  .intro-strip {
+    overflow: auto;
+    white-space: nowrap;
+    gap: 20px;
+  }
+
+  .section-block {
+    padding: 60px 6%;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .feature-grid,
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card,
+  .feature-card.large {
+    height: 420px;
+  }
+
+  .season-banner {
+    margin: 0 6% 60px;
+    grid-template-columns: 1fr;
+  }
+
+  .page-wrap {
+    padding: 40px 6%;
+  }
+
+  .page-top {
+    display: block;
+  }
+
+  footer {
+    display: block;
+  }
+}
