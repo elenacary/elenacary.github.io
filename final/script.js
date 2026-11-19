@@ -1,423 +1,572 @@
 
-const app = document.getElementById("app");
-const nav = document.querySelector(".desktop-nav");
-const savedCount = document.getElementById("saved-count");
+/* =====================================
+   THE EVERYDAY EDIT
+   Main website functionality
+===================================== */
 
-let savedItems = JSON.parse(
-  localStorage.getItem("everydayEditSaved") || "[]"
-);
+// Add your TMDB API Read Access Token here.
+// Get one at: https://www.themoviedb.org/settings/api
+const TMDB_TOKEN = "PASTE_YOUR_TMDB_READ_ACCESS_TOKEN_HERE";
 
-const content = {
-  move: [
-    {
-      id: "m1",
-      category: "RUN",
-      type: "Running",
-      title: "A feel-good interval run",
-      desc: "A treadmill or outdoor session to add variety to your week.",
-      tag: "25 MIN",
-      image: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.youtube.com/results?search_query=running+interval+workout"
-    },
-    {
-      id: "m2",
-      category: "STRENGTH",
-      type: "Strength",
-      title: "A full-body strength reset",
-      desc: "A balanced strength session for the days you want to feel strong.",
-      tag: "30 MIN",
-      image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.youtube.com/results?search_query=full+body+strength+workout"
-    },
-    {
-      id: "m3",
-      category: "PILATES",
-      type: "Pilates",
-      title: "A slower kind of strength",
-      desc: "A mat-based flow for a focused, low-impact movement day.",
-      tag: "20 MIN",
-      image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.youtube.com/results?search_query=mat+pilates"
-    }
-  ],
+// Saved items are kept in the browser.
+let savedItems = JSON.parse(localStorage.getItem("everydayEditSaved") || "[]");
 
-  daily: [
-    {
-      id: "d1",
-      category: "STYLE",
-      type: "Everyday",
-      title: "The everyday outfit formula",
-      desc: "Easy layers, great jeans, and one detail that makes it feel like you.",
-      tag: "WHAT TO WEAR",
-      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=everyday+outfit"
-    },
-    {
-      id: "d2",
-      category: "GIRLS' NIGHT",
-      type: "Occasion",
-      title: "A night in, but make it special",
-      desc: "A cozy evening with good food, a playlist, and your favorite people.",
-      tag: "MAKE A PLAN",
-      image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=girls+night"
-    },
-    {
-      id: "d3",
-      category: "WEEKEND",
-      type: "Everyday",
-      title: "A little weekend inspiration",
-      desc: "A long walk, a market stop, and time to reset.",
-      tag: "LITTLE THINGS",
-      image: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=weekend+inspiration"
-    }
-  ],
-
-  recipes: [
-    {
-      id: "r1",
-      category: "SWEET",
-      type: "Dessert",
-      title: "The cozy-season baking list",
-      desc: "Cookies, cakes, and little treats worth making.",
-      tag: "SOMETHING SWEET",
-      image: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.bbcgoodfood.com/recipes/collection/autumn-baking-recipes"
-    },
-    {
-      id: "r2",
-      category: "WEEK NIGHT",
-      type: "Dinner",
-      title: "An easy dinner to keep on repeat",
-      desc: "A flexible weeknight idea for something delicious.",
-      tag: "DINNER IDEAS",
-      image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.budgetbytes.com/"
-    },
-    {
-      id: "r3",
-      category: "SEASONAL",
-      type: "Seasonal",
-      title: "A market-basket kind of meal",
-      desc: "Build something colorful around what's in season.",
-      tag: "COOK WITH THE SEASON",
-      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.loveandlemons.com/"
-    }
-  ],
-
-  spaces: [
-    {
-      id: "s1",
-      category: "LIVING ROOM",
-      type: "Living room",
-      title: "Collected, not decorated",
-      desc: "Mix artwork, vintage finds, texture, and pieces that tell a story.",
-      tag: "ROOM INSPIRATION",
-      image: "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=eclectic+living+room"
-    },
-    {
-      id: "s2",
-      category: "BEDROOM",
-      type: "Bedroom",
-      title: "A bedroom with personality",
-      desc: "Layered bedding, warm lighting, and details that make a room yours.",
-      tag: "ROOM INSPIRATION",
-      image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=collected+bedroom"
-    },
-    {
-      id: "s3",
-      category: "DETAILS",
-      type: "Details",
-      title: "The details make the space",
-      desc: "Art, lamps, flowers, books, and objects collected over time.",
-      tag: "FINISHING TOUCHES",
-      image: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=eclectic+home+decor"
-    }
-  ],
-
-  holiday: [
-    {
-      id: "h1",
-      category: "DECOR",
-      type: "Decor",
-      title: "A collected Christmas",
-      desc: "A festive mix of color, nostalgic details, and greenery.",
-      tag: "HOLIDAY SPACES",
-      image: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=colorful+christmas+decor"
-    },
-    {
-      id: "h2",
-      category: "HOSTING",
-      type: "Hosting",
-      title: "A holiday night with friends",
-      desc: "A simple menu, a pretty table, and a reason to gather.",
-      tag: "GATHER TOGETHER",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=christmas+dinner+party"
-    },
-    {
-      id: "h3",
-      category: "GIFTING",
-      type: "Gifts",
-      title: "Thoughtful little gift ideas",
-      desc: "A few ideas for the people who are fun to shop for.",
-      tag: "THE GIFT EDIT",
-      image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85",
-      link: "https://www.pinterest.com/search/pins/?q=thoughtful+gift+guide"
-    }
-  ]
-};
-
-const pageInfo = {
-  move: [
-    "Move your way.",
-    "Workouts, movement ideas, and reminders to get out the door."
-  ],
-  daily: [
-    "The Daily Edit.",
-    "What to wear, what to do, where to go, and little plans that make an ordinary day feel special."
-  ],
-  recipes: [
-    "The Recipe Edit.",
-    "Seasonal favorites, weeknight ideas, and something sweet. Good food, no rules."
-  ],
-  spaces: [
-    "The Space Edit.",
-    "Rooms, objects, colors, and collected details that make a space feel like you."
-  ],
-  holiday: [
-    "The Holiday Edit.",
-    "Seasonal inspiration for decorating, gathering, gifting, and cooking."
-  ],
-  saved: [
-    "Your saved edit.",
-    "All the ideas you have bookmarked in one place."
-  ]
-};
-
-function updateSavedCount() {
-  savedCount.textContent = savedItems.length;
-}
-
-function cardTemplate(item) {
-  const isSaved = savedItems.some(
-    saved => saved.id === item.id
-  );
-
-  return `
-    <article class="content-card">
-      <img src="${item.image}" alt="${item.title}">
-
-      <div class="content-card-body">
-        <span class="category">
-          ${item.category} · ${item.tag}
-        </span>
-
-        <h3>${item.title}</h3>
-        <p>${item.desc}</p>
-
-        <div class="card-actions">
-          <a href="${item.link}" target="_blank">
-            EXPLORE ↗
-          </a>
-
-          <button
-            class="save-btn ${isSaved ? "saved" : ""}"
-            data-save="${item.id}">
-            ${isSaved ? "♥" : "♡"}
-          </button>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function renderPage(page, filter = "All") {
-  const isSavedPage = page === "saved";
-
-  let items = isSavedPage
-    ? savedItems
-    : content[page] || [];
-
-  if (filter !== "All") {
-    items = items.filter(
-      item => item.type === filter
-    );
-  }
-
-  const filters = isSavedPage
-    ? []
-    : ["All", ...new Set(
-        (content[page] || []).map(item => item.type)
-      )];
-
-  app.innerHTML = `
-    <section class="page-wrap">
-
-      <div class="page-top">
-        <div>
-          <p class="eyebrow">THE EVERYDAY EDIT / ${page.toUpperCase()}</p>
-          <h1>${pageInfo[page][0]}</h1>
-        </div>
-
-        <p>${pageInfo[page][1]}</p>
-      </div>
-
-      <div class="filter-row">
-        ${filters.map(f => `
-          <button class="filter-btn ${filter === f ? "active" : ""}"
-            data-filter="${f}">
-            ${f.toUpperCase()}
-          </button>
-        `).join("")}
-      </div>
-
-      <div class="content-grid">
-        ${items.length
-          ? items.map(cardTemplate).join("")
-          : `<div class="empty-state">
-               <h2>Nothing saved just yet.</h2>
-               <p>Tap the heart on anything you want to revisit.</p>
-             </div>`
-        }
-      </div>
-
-    </section>
-  `;
-
-  document.querySelectorAll("[data-filter]").forEach(button => {
-    button.addEventListener("click", () => {
-      renderPage(page, button.dataset.filter);
-    });
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
   });
 
-  document.querySelectorAll("[data-save]").forEach(button => {
-    button.addEventListener("click", () => {
-      toggleSave(button.dataset.save, page);
-    });
-  });
+  const selectedPage = document.getElementById(pageId);
+  if (selectedPage) selectedPage.classList.add("active");
+
+  document.getElementById("navigation").classList.remove("open");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  if (pageId === "saved") displaySaved();
+  if (pageId === "buzz") loadMovies();
 }
 
-function toggleSave(id, page) {
-  const allItems = Object.values(content).flat();
-
-  const item = allItems.find(
-    item => item.id === id
-  );
-
-  const index = savedItems.findIndex(
-    saved => saved.id === id
-  );
-
-  if (index >= 0) {
-    savedItems.splice(index, 1);
-  } else if (item) {
-    savedItems.push(item);
-  }
-
-  localStorage.setItem(
-    "everydayEditSaved",
-    JSON.stringify(savedItems)
-  );
-
-  updateSavedCount();
-  renderPage(page);
+function toggleMenu() {
+  document.getElementById("navigation").classList.toggle("open");
 }
 
-function navigate(page) {
-  if (page === "home") {
-    location.hash = "";
-    location.reload();
+// =====================================
+// SEARCH
+// =====================================
+
+const searchableContent = [
+  { title: "Running", description: "Intervals, long runs and easy miles", page: "move" },
+  { title: "Pilates", description: "Strengthen, stretch and reset", page: "move" },
+  { title: "Strength Training", description: "Build strength at your own pace", page: "move" },
+  { title: "Date Night", description: "Outfits and plans for date night", page: "daily" },
+  { title: "Girls' Night", description: "Ideas for a night with friends", page: "daily" },
+  { title: "Weekend Plans", description: "Find something fun to do", page: "daily" },
+  { title: "Easy Dinners", description: "Simple dinner ideas", page: "recipes" },
+  { title: "Something Sweet", description: "Desserts and treats", page: "recipes" },
+  { title: "Trader Joe's Finds", description: "Food finds and grocery inspiration", page: "recipes" },
+  { title: "Living Spaces", description: "Interior and room inspiration", page: "spaces" },
+  { title: "Decorating", description: "Home decor and seasonal inspiration", page: "spaces" },
+  { title: "Gift Guides", description: "Gift ideas for everyone", page: "holiday" },
+  { title: "Holiday Recipes", description: "Seasonal recipes and baking", page: "holiday" },
+  { title: "Movies", description: "Trending movies and new releases", page: "buzz" },
+  { title: "Influencers", description: "Creator updates and social media", page: "buzz" }
+];
+
+function searchSite() {
+  const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
+  if (!searchTerm) return;
+
+  const results = searchableContent.filter(item =>
+    item.title.toLowerCase().includes(searchTerm) ||
+    item.description.toLowerCase().includes(searchTerm)
+  );
+
+  showPage("searchPage");
+
+  const container = document.getElementById("searchResults");
+
+  if (results.length === 0) {
+    container.innerHTML = "<p>No results found. Try another search!</p>";
     return;
   }
 
-  location.hash = page;
-  renderPage(page);
-
-  document.querySelectorAll(".desktop-nav button").forEach(button => {
-    button.classList.toggle(
-      "active",
-      button.dataset.page === page
-    );
-  });
-
-  nav.classList.remove("open");
-  window.scrollTo(0, 0);
+  container.innerHTML = results.map(item => `
+    <article class="tile" onclick="showPage('${item.page}')">
+      <div style="background:#f4d66d;padding:35px;min-height:140px;">
+        <p class="eyebrow">THE EVERYDAY EDIT</p>
+        <h3>${item.title}</h3>
+      </div>
+      <p>${item.description}</p>
+      <button class="text-button">EXPLORE ↗</button>
+    </article>
+  `).join("");
 }
 
-// NAVIGATION BUTTONS
+// =====================================
+// SAVED ITEMS
+// =====================================
 
-document.querySelectorAll("[data-page]").forEach(button => {
-  button.addEventListener("click", () => {
-    navigate(button.dataset.page);
+function saveItem(title, description) {
+  const alreadySaved = savedItems.some(item => item.title === title);
+
+  if (alreadySaved) {
+    savedItems = savedItems.filter(item => item.title !== title);
+  } else {
+    savedItems.push({ title, description });
+  }
+
+  localStorage.setItem("everydayEditSaved", JSON.stringify(savedItems));
+  displaySaved();
+}
+
+function displaySaved() {
+  const container = document.getElementById("savedGrid");
+
+  if (savedItems.length === 0) {
+    container.innerHTML = "<p>You haven't saved anything yet. Explore the site and tap ♡ on something you love.</p>";
+    return;
+  }
+
+  container.innerHTML = savedItems.map(item => `
+    <article class="saved-item">
+      <p class="eyebrow">YOUR SAVED EDIT</p>
+      <h3>${item.title}</h3>
+      <p>${item.description}</p>
+      <button class="text-button" onclick="saveItem('${escapeText(item.title)}','${escapeText(item.description)}')">
+        REMOVE FROM SAVED ×
+      </button>
+    </article>
+  `).join("");
+}
+
+function escapeText(value) {
+  return String(value).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+}
+
+// =====================================
+// QUIZ 1: FIND YOUR WEEKEND VIBE
+// =====================================
+
+function startWeekendQuiz() {
+  showPage("quizzes");
+
+  const area = document.getElementById("quizArea");
+
+  const questions = [
+    {
+      question: "1. What sounds best?",
+      options: ["Getting outside", "A cozy day at home", "Exploring somewhere new", "Getting dressed up"]
+    },
+    {
+      question: "2. Who are you going with?",
+      options: ["Friends", "Just me", "Family"]
+    },
+    {
+      question: "3. What's your budget?",
+      options: ["Budget-friendly", "A little splurge"]
+    }
+  ];
+
+  let answers = [];
+
+  function renderQuestion(index) {
+    if (index >= questions.length) {
+      showWeekendResult(answers);
+      return;
+    }
+
+    const question = questions[index];
+
+    area.innerHTML = `
+      <p class="eyebrow">WEEKEND VIBE QUIZ · QUESTION ${index + 1} OF 3</p>
+      <h2>${question.question}</h2>
+      <div class="quiz-options">
+        ${question.options.map(option => `
+          <button class="quiz-option" onclick="selectWeekendAnswer('${escapeText(option)}', ${index})">
+            ${option}
+          </button>
+        `).join("")}
+      </div>
+    `;
+
+    window.selectWeekendAnswer = function(answer, questionIndex) {
+      answers[questionIndex] = answer;
+      renderQuestion(questionIndex + 1);
+    };
+  }
+
+  function showWeekendResult(responses) {
+    const activity = responses[0];
+    const company = responses[1];
+    const budget = responses[2];
+
+    let result;
+
+    if (activity === "Getting outside") {
+      result = {
+        title: "The Outdoor Explorer",
+        description: "Your ideal weekend includes fresh air, a little movement, and somewhere beautiful to explore.",
+        ideas: "Try a scenic walk, a morning hike, a picnic, or a new outdoor workout."
+      };
+    } else if (activity === "A cozy day at home") {
+      result = {
+        title: "The Cozy Weekend",
+        description: "You're in the mood to slow down, recharge, and enjoy being at home.",
+        ideas: "Make a fun breakfast, try a new recipe, have a movie night, or refresh your space."
+      };
+    } else if (activity === "Exploring somewhere new") {
+      result = {
+        title: "The Little Adventurer",
+        description: "You want a change of scenery and something new to discover.",
+        ideas: "Visit a new coffee shop, browse a local market, explore a nearby town, or try a new class."
+      };
+    } else {
+      result = {
+        title: "The Main Character Weekend",
+        description: "You're ready for a fun plan, a great outfit, and a reason to get out of the house.",
+        ideas: "Plan a dinner, get dressed up, try a new restaurant, or organize a girls' night."
+      };
+    }
+
+    area.innerHTML = `
+      <p class="eyebrow">YOUR WEEKEND VIBE</p>
+      <div class="quiz-result">
+        <h3>${result.title}</h3>
+        <p>${result.description}</p>
+        <p><strong>Your weekend ideas:</strong> ${result.ideas}</p>
+        <p><strong>Your plans:</strong> ${company} · ${budget}</p>
+        <button class="dark-button" onclick="saveItem('${escapeText(result.title)}','${escapeText(result.ideas)}')">♡ SAVE MY RESULT</button>
+        <button class="text-button" onclick="startWeekendQuiz()">TAKE AGAIN ↻</button>
+      </div>
+    `;
+  }
+
+  renderQuestion(0);
+}
+
+// =====================================
+// QUIZ 2: WHAT'S IN YOUR FRIDGE?
+// =====================================
+
+function startFridgeQuiz() {
+  showPage("quizzes");
+
+  const area = document.getElementById("quizArea");
+
+  area.innerHTML = `
+    <p class="eyebrow">THE FRIDGE CLEAN-OUT CHALLENGE</p>
+    <h2>What's in your fridge?</h2>
+    <p>Enter a few ingredients you already have, separated by commas. We'll suggest something to make!</p>
+    <input id="ingredients" type="text" placeholder="Example: eggs, spinach, chicken, pasta">
+    <button class="dark-button" onclick="findRecipe()">FIND MY RECIPE ↗</button>
+    <div id="recipeResult"></div>
+  `;
+}
+
+function findRecipe() {
+  const ingredients = document.getElementById("ingredients").value.toLowerCase();
+  const result = document.getElementById("recipeResult");
+
+  if (!ingredients.trim()) {
+    result.innerHTML = "<p>Enter at least one ingredient to get started!</p>";
+    return;
+  }
+
+  const recipes = [
+    {
+      title: "The Easy Breakfast Bowl",
+      description: "A simple bowl with eggs, avocado, spinach, and whatever vegetables you have.",
+      keywords: ["egg", "avocado", "spinach", "tomato", "potato"]
+    },
+    {
+      title: "The Everything Pasta",
+      description: "Toss pasta with olive oil, garlic, vegetables, and a little parmesan.",
+      keywords: ["pasta", "tomato", "spinach", "cheese", "garlic"]
+    },
+    {
+      title: "The Weeknight Chicken Bowl",
+      description: "Build a bowl with chicken, rice, vegetables, and your favorite dressing.",
+      keywords: ["chicken", "rice", "broccoli", "carrot", "avocado"]
+    },
+    {
+      title: "The Loaded Salad",
+      description: "Mix greens with whatever vegetables, protein, nuts, and cheese you have.",
+      keywords: ["lettuce", "spinach", "chicken", "cheese", "cucumber"]
+    },
+    {
+      title: "The Sweet Treat",
+      description: "Make a quick yogurt bowl with fruit, honey, and something crunchy.",
+      keywords: ["yogurt", "berries", "banana", "strawberry", "honey"]
+    }
+  ];
+
+  let bestRecipe = recipes[0];
+  let highestScore = 0;
+
+  recipes.forEach(recipe => {
+    let score = 0;
+
+    recipe.keywords.forEach(keyword => {
+      if (ingredients.includes(keyword)) score++;
+    });
+
+    if (score > highestScore) {
+      highestScore = score;
+      bestRecipe = recipe;
+    }
   });
-});
 
-// SEARCH
+  if (highestScore === 0) {
+    bestRecipe = {
+      title: "The Mix-and-Match Meal",
+      description: "Try combining one protein, one vegetable, and one carbohydrate. Add a sauce or seasoning you love, and make it your own!"
+    };
+  }
 
-document.getElementById("search-toggle").addEventListener("click", () => {
-  document.getElementById("search-panel").classList.toggle("open");
-});
+  result.innerHTML = `
+    <div class="quiz-result">
+      <p class="eyebrow">YOUR RECIPE MATCH</p>
+      <h3>${bestRecipe.title}</h3>
+      <p>${bestRecipe.description}</p>
+      <p><strong>Ingredients you entered:</strong> ${ingredients}</p>
+      <button class="dark-button" onclick="saveItem('${escapeText(bestRecipe.title)}','${escapeText(bestRecipe.description)}')">♡ SAVE THIS IDEA</button>
+      <button class="text-button" onclick="startFridgeQuiz()">TRY AGAIN ↻</button>
+    </div>
+  `;
+}
 
-document.getElementById("menu-toggle").addEventListener("click", () => {
-  nav.classList.toggle("open");
-});
+// =====================================
+// QUIZ 3: BUILD MY WORKOUT
+// =====================================
 
-function runSearch() {
-  const term = document.getElementById("search-input")
-    .value.trim().toLowerCase();
+function startWorkoutQuiz(preselectedType = "") {
+  showPage("quizzes");
 
-  if (!term) return;
+  const area = document.getElementById("quizArea");
 
-  const matches = Object.values(content)
-    .flat()
-    .filter(item =>
-      (item.title + " " + item.desc + " " +
-       item.category + " " + item.type)
-        .toLowerCase()
-        .includes(term)
-    );
+  const workoutTypes = ["Run", "Pilates", "Strength", "Walk", "Hike", "Recovery"];
 
-  app.innerHTML = `
-    <section class="page-wrap">
-      <div class="page-top">
-        <div>
-          <p class="eyebrow">THE EVERYDAY EDIT / SEARCH</p>
-          <h1>Search results.</h1>
-        </div>
-        <p>Ideas matching "${term}"</p>
+  area.innerHTML = `
+    <p class="eyebrow">YOUR PERSONAL WORKOUT EDIT</p>
+    <h2>Build my workout.</h2>
+
+    <div class="quiz-question">
+      <h3>What are you in the mood for?</h3>
+      <div class="quiz-options">
+        ${workoutTypes.map(type => `
+          <button class="quiz-option ${preselectedType === type ? "selected" : ""}"
+            onclick="selectWorkoutType('${type}', this)">${type}</button>
+        `).join("")}
       </div>
+    </div>
 
-      <div class="content-grid">
-        ${matches.length
-          ? matches.map(cardTemplate).join("")
-          : `<div class="empty-state">
-               No matches yet. Try "run", "dinner", or "bedroom".
-             </div>`
-        }
+    <div class="quiz-question">
+      <h3>How much time do you have?</h3>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectWorkoutTime('15 minutes',this)">15 minutes</button>
+        <button class="quiz-option" onclick="selectWorkoutTime('30 minutes',this)">30 minutes</button>
+        <button class="quiz-option" onclick="selectWorkoutTime('45 minutes',this)">45 minutes</button>
+        <button class="quiz-option" onclick="selectWorkoutTime('60 minutes',this)">60 minutes</button>
       </div>
-    </section>
+    </div>
+
+    <div class="quiz-question">
+      <h3>What intensity sounds right?</h3>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectWorkoutDifficulty('Easy',this)">Easy</button>
+        <button class="quiz-option" onclick="selectWorkoutDifficulty('Moderate',this)">Moderate</button>
+        <button class="quiz-option" onclick="selectWorkoutDifficulty('Challenging',this)">Challenging</button>
+      </div>
+    </div>
+
+    <button class="dark-button" onclick="generateWorkout()">FIND MY WORKOUT ↗</button>
+    <div id="workoutResult"></div>
   `;
 
-  document.querySelectorAll("[data-save]").forEach(button => {
-    button.addEventListener("click", () => {
-      toggleSave(button.dataset.save, "daily");
-    });
-  });
+  window.workoutChoices = {
+    type: preselectedType,
+    time: "",
+    difficulty: ""
+  };
 }
 
-document.getElementById("search-submit")
-  .addEventListener("click", runSearch);
+function selectWorkoutType(value, button) {
+  workoutChoices.type = value;
+  highlightSelection(button);
+}
 
-document.getElementById("search-input")
-  .addEventListener("keydown", event => {
-    if (event.key === "Enter") runSearch();
+function selectWorkoutTime(value, button) {
+  workoutChoices.time = value;
+  highlightSelection(button);
+}
+
+function selectWorkoutDifficulty(value, button) {
+  workoutChoices.difficulty = value;
+  highlightSelection(button);
+}
+
+function highlightSelection(button) {
+  button.parentElement.querySelectorAll(".quiz-option").forEach(option => {
+    option.classList.remove("selected");
   });
+  button.classList.add("selected");
+}
 
-updateSavedCount();
+function generateWorkout() {
+  const choice = workoutChoices;
+  const result = document.getElementById("workoutResult");
+
+  if (!choice.type || !choice.time || !choice.difficulty) {
+    result.innerHTML = "<p>Please choose a workout type, time, and intensity first!</p>";
+    return;
+  }
+
+  const suggestions = {
+    Run: "Start with a 5-minute warm-up, alternate running and recovery intervals, and finish with an easy cooldown.",
+    Pilates: "Focus on core work, controlled movements, glute strength, and a few minutes of stretching.",
+    Strength: "Choose a squat, hinge, push, pull, and core movement. Complete 2–3 rounds with controlled form.",
+    Walk: "Head outside for a brisk walk. Mix in a few faster intervals if you want an extra challenge.",
+    Hike: "Find a local trail, bring water, and enjoy a steady-paced outdoor adventure.",
+    Recovery: "Try gentle mobility, stretching, breathing exercises, and an easy walk."
+  };
+
+  const suggestion = suggestions[choice.type];
+
+  result.innerHTML = `
+    <div class="quiz-result">
+      <p class="eyebrow">YOUR WORKOUT IS READY</p>
+      <h3>${choice.time} ${choice.difficulty.toLowerCase()} ${choice.type.toLowerCase()}</h3>
+      <p>${suggestion}</p>
+      <p><strong>Your plan:</strong> ${choice.type} · ${choice.time} · ${choice.difficulty}</p>
+      <p>Adjust the movements to your ability, and take breaks whenever you need them.</p>
+      <button class="dark-button" onclick="saveItem('${escapeText(choice.type + ' Workout')}','${escapeText(suggestion)}')">♡ SAVE WORKOUT</button>
+      <button class="text-button" onclick="startWorkoutQuiz()">BUILD ANOTHER ↻</button>
+    </div>
+  `;
+}
+
+// =====================================
+// THE BUZZ: SOCIAL POSTS
+// =====================================
+
+function addSocialPost() {
+  const input = document.getElementById("socialUrl");
+  const url = input.value.trim();
+  const container = document.getElementById("socialPosts");
+
+  if (!url) {
+    alert("Paste a TikTok or Instagram post link first.");
+    return;
+  }
+
+  let parsedUrl;
+
+  try {
+    parsedUrl = new URL(url);
+  } catch {
+    alert("Please enter a valid link.");
+    return;
+  }
+
+  const allowedSites = [
+    "tiktok.com",
+    "www.tiktok.com",
+    "instagram.com",
+    "www.instagram.com"
+  ];
+
+  if (!allowedSites.includes(parsedUrl.hostname)) {
+    alert("Please use a TikTok or Instagram link.");
+    return;
+  }
+
+  const post = document.createElement("article");
+  post.className = "social-post";
+
+  const label = document.createElement("p");
+  label.textContent = "YOUR CREATOR EDIT";
+
+  const link = document.createElement("a");
+  link.href = parsedUrl.href;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.textContent = "OPEN POST ↗";
+
+  post.append(label, link);
+  container.prepend(post);
+  input.value = "";
+}
+
+// =====================================
+// THE BUZZ: MOVIE API
+// =====================================
+
+async function loadMovies() {
+  const container = document.getElementById("movieGrid");
+
+  if (!container) return;
+
+  if (
+    !TMDB_TOKEN ||
+    TMDB_TOKEN === "PASTE_YOUR_TMDB_READ_ACCESS_TOKEN_HERE"
+  ) {
+    container.innerHTML = `
+      <p>Your movie feed is ready to connect! Add your TMDB API Read Access Token in script.js to display current trending movies.</p>
+    `;
+    return;
+  }
+
+  container.innerHTML = "<p>Loading the latest movie edit...</p>";
+
+  try {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/trending/movie/week?language=en-US",
+      {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${TMDB_TOKEN}`
+        }
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("The movie feed could not be loaded.");
+    }
+
+    const data = await response.json();
+
+    const movies = data.results.slice(0, 12);
+
+    container.innerHTML = movies.map(movie => {
+      const poster = movie.poster_path
+        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        : "";
+
+      const releaseDate = movie.release_date || "Release date unavailable";
+      const rating = movie.vote_average
+        ? movie.vote_average.toFixed(1)
+        : "Not rated";
+
+      return `
+        <article class="movie-card">
+          ${
+            poster
+              ? `<img src="${poster}" alt="${escapeHtml(movie.title)} poster">`
+              : `<div style="height:310px;background:#e8d9cb;display:grid;place-items:center;">Poster unavailable</div>`
+          }
+          <div>
+            <p class="eyebrow">TRENDING MOVIE</p>
+            <h3>${escapeHtml(movie.title)}</h3>
+            <p>${escapeHtml(releaseDate)}</p>
+            <p class="movie-rating">★ ${rating} / 10</p>
+            <p>${escapeHtml(movie.overview || "No description available.")}</p>
+            <button class="text-button" onclick="saveItem('${escapeText(movie.title)}','${escapeText("Trending movie · " + releaseDate)}')">♡ SAVE MOVIE</button>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+  } catch (error) {
+    container.innerHTML = `
+      <p>We couldn't load the movie feed right now. Check your API token and internet connection, then refresh.</p>
+    `;
+    console.error(error);
+  }
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[character]);
+}
+
+// =====================================
+// INITIALIZE WEBSITE
+// =====================================
+
+displaySaved();

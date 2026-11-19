@@ -5,154 +5,249 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Everyday Edit</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="site-header">
-  <a class="wordmark" href="#" data-page="home">
-    the everyday <em>edit.</em>
-  </a>
+  <header class="topbar">
+    <a class="logo" href="#" onclick="showPage('home'); return false;">THE EVERYDAY EDIT<span>✳</span></a>
+    <div class="top-search">
+      <input id="searchInput" type="search" placeholder="Search the edit..." onkeydown="if(event.key==='Enter') searchSite()">
+      <button onclick="searchSite()">⌕</button>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
 
-  <nav class="desktop-nav">
-    <button data-page="move">MOVE</button>
-    <button data-page="daily">DAILY EDIT</button>
-    <button data-page="recipes">RECIPES</button>
-    <button data-page="spaces">SPACES</button>
-    <button data-page="holiday">HOLIDAY</button>
-    <button data-page="saved">SAVED <span id="saved-count">0</span></button>
+  <nav class="navigation" id="navigation">
+    <button onclick="showPage('move')">MOVE</button>
+    <button onclick="showPage('daily')">DAILY EDIT</button>
+    <button onclick="showPage('recipes')">RECIPES</button>
+    <button onclick="showPage('spaces')">SPACES</button>
+    <button onclick="showPage('holiday')">HOLIDAY</button>
+    <button onclick="showPage('quizzes')">QUIZZES</button>
+    <button onclick="showPage('buzz')">THE BUZZ</button>
+    <button onclick="showPage('saved')">♡ SAVED</button>
   </nav>
 
-  <button class="search-toggle" id="search-toggle">⌕</button>
-  <button class="menu-toggle" id="menu-toggle">☰</button>
-</header>
+  <main id="app">
 
-<div class="search-panel" id="search-panel">
-  <input id="search-input" type="search"
-    placeholder="Search workouts, outfits, recipes, spaces...">
-  <button id="search-submit">SEARCH</button>
-</div>
-
-<main id="app">
-
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">A LITTLE INSPIRATION FOR EVERYDAY LIVING</p>
-
-      <h1>Make room for<br><i>the good stuff.</i></h1>
-
-      <p class="hero-intro">
-        Ideas to move, make, wear, cook, collect, and enjoy.
-        A curated corner of the internet for making the
-        everyday a little more interesting.
-      </p>
-
-      <button class="text-link" data-page="daily">
-        EXPLORE THE EDIT ↗
-      </button>
-    </div>
-
-    <div class="hero-photos">
-      <img class="hero-photo-one"
-        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85"
-        alt="Fashion inspiration">
-
-      <img class="hero-photo-two"
-        src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=700&q=85"
-        alt="Interior inspiration">
-
-      <span class="photo-note">a life well collected ✳</span>
-    </div>
-  </section>
-
-  <section class="intro-strip">
-    <span>GOOD FINDS</span>
-    <span>FRESH IDEAS</span>
-    <span>EVERYDAY RITUALS</span>
-    <span>SEASONAL INSPIRATION</span>
-  </section>
-
-  <section class="section-block">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">THE CURRENT MOOD</p>
-        <h2>What's on <i>our radar.</i></h2>
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A LITTLE INSPIRATION FOR EVERYDAY LIVING</p>
+          <h1>Make the everyday<br><em>a little more</em> interesting.</h1>
+          <p>Ideas, inspiration, and little things worth sharing — all in one place.</p>
+          <button class="dark-button" onclick="showPage('daily')">EXPLORE THE EDIT ↗</button>
+        </div>
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1100" alt="Colorful flowers">
+          <span class="photo-note">A fresh perspective on everyday life.</span>
+        </div>
       </div>
 
-      <p class="section-aside">
-        A few things worth bookmarking, trying, or looking forward to.
-      </p>
-    </div>
+      <div class="intro-row">
+        <p class="eyebrow">THE LATEST EDIT</p>
+        <h2>Find something that inspires you.</h2>
+      </div>
 
-    <div class="feature-grid">
+      <div class="feature-grid">
+        <article class="feature-card feature-large" onclick="showPage('move')">
+          <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=1000" alt="Outdoor running">
+          <div class="feature-label"><span>01 / MOVE</span><h3>A little movement<br>goes a long way.</h3></div>
+        </article>
+        <article class="feature-card" onclick="showPage('daily')">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800" alt="Fashion inspiration">
+          <div class="feature-label"><span>02 / DAILY EDIT</span><h3>What's the occasion?</h3></div>
+        </article>
+        <article class="feature-card" onclick="showPage('recipes')">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800" alt="Fresh food">
+          <div class="feature-label"><span>03 / RECIPES</span><h3>Something good to eat.</h3></div>
+        </article>
+        <article class="feature-card" onclick="showPage('spaces')">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800" alt="Eclectic home interior">
+          <div class="feature-label"><span>04 / SPACES</span><h3>Make yourself at home.</h3></div>
+        </article>
+      </div>
 
-      <article class="feature-card large">
-        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85"
-          alt="Outfit inspiration">
-        <div class="feature-caption">
-          <span>01 / THE DAILY EDIT</span>
-          <h3>Outfits for wherever<br>the day takes you.</h3>
-          <button data-page="daily">SEE THE EDIT ↗</button>
+      <section class="quote-section">
+        <p>“A little inspiration can change an ordinary day.”</p>
+        <span>THE EVERYDAY EDIT</span>
+      </section>
+
+      <div class="home-bottom">
+        <div>
+          <p class="eyebrow">YOUR NEXT LITTLE ADVENTURE</p>
+          <h2>Not sure what you're in the mood for?</h2>
+          <p>Take a quiz and let us pick something for you.</p>
+          <button class="dark-button" onclick="showPage('quizzes')">FIND YOUR EDIT ↗</button>
         </div>
-      </article>
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900" alt="Friends spending time together">
+      </div>
+    </section>
 
-      <article class="feature-card">
-        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
-          alt="Dessert inspiration">
-        <div class="feature-caption">
-          <span>02 / THE RECIPE EDIT</span>
-          <h3>A little something<br>sweet.</h3>
-          <button data-page="recipes">GET COOKING ↗</button>
-        </div>
-      </article>
+    <section id="move" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">A LITTLE MOVEMENT, A LOT OF GOOD</p>
+        <h1>Move <em>your way.</em></h1>
+        <p>Runs, Pilates, strength, walks, and everything in between.</p>
+      </div>
+      <div class="split-feature">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1000" alt="Pilates workout">
+        <div><p class="eyebrow">THE WORKOUT EDIT</p><h2>Find a workout that fits your day.</h2><p>Whether you have 15 minutes or an entire afternoon, there's a way to move.</p><button class="dark-button" onclick="showPage('quizzes'); startWorkoutQuiz()">BUILD MY WORKOUT ↗</button></div>
+      </div>
+      <div class="section-title"><h2>Pick your kind of movement</h2></div>
+      <div class="tile-grid">
+        <article class="tile" onclick="startWorkoutQuiz('Run')"><img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=700" alt="Running"><h3>Running</h3><p>Intervals, long runs & easy miles</p></article>
+        <article class="tile" onclick="startWorkoutQuiz('Pilates')"><img src="https://images.unsplash.com/photo-1510894347719-f9c7f7c5e4e4?w=700" alt="Pilates"><h3>Pilates</h3><p>Strengthen, stretch & reset</p></article>
+        <article class="tile" onclick="startWorkoutQuiz('Strength')"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700" alt="Strength training"><h3>Strength</h3><p>Build strength at your own pace</p></article>
+        <article class="tile" onclick="startWorkoutQuiz('Walk')"><img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=700" alt="Nature walk"><h3>Walks & Hikes</h3><p>Get outside and explore</p></article>
+      </div>
+    </section>
 
-      <article class="feature-card">
-        <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=900&q=85"
-          alt="Interior inspiration">
-        <div class="feature-caption">
-          <span>03 / THE SPACE EDIT</span>
-          <h3>Spaces with a story<br>to tell.</h3>
-          <button data-page="spaces">TAKE A LOOK ↗</button>
-        </div>
-      </article>
+    <section id="daily" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">OUTFITS, PLANS & LITTLE INSPIRATIONS</p>
+        <h1>The Daily <em>Edit.</em></h1>
+        <p>For getting dressed, making plans, and enjoying the in-between.</p>
+      </div>
+      <div class="editorial-feature">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1100" alt="Fashion editorial">
+        <div><p class="eyebrow">THE STYLE FILE</p><h2>Get dressed for the life you're living.</h2><p>Ideas for date nights, girls' nights, weekends, and everything in between.</p></div>
+      </div>
+      <div class="tile-grid">
+        <article class="tile"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700" alt="Outfit inspiration"><h3>Date Night</h3><p>Something a little special.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700" alt="Style inspiration"><h3>Everyday Style</h3><p>Outfits you'll actually wear.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=700" alt="Friends together"><h3>Girls' Night</h3><p>Plans worth getting ready for.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=700" alt="Weekend inspiration"><h3>Weekend Plans</h3><p>Make the most of your days off.</p></article>
+      </div>
+    </section>
 
-    </div>
-  </section>
+    <section id="recipes" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">A LITTLE SOMETHING DELICIOUS</p>
+        <h1>What's <em>cooking?</em></h1>
+        <p>Everyday meals, seasonal favorites, fun finds, and treats worth making.</p>
+      </div>
+      <div class="split-feature">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1000" alt="Fresh meal">
+        <div><p class="eyebrow">THE RECIPE BOX</p><h2>Good food, no complicated rules.</h2><p>From quick dinners to something sweet, find your next favorite.</p><button class="dark-button" onclick="showPage('quizzes'); startFridgeQuiz()">WHAT'S IN YOUR FRIDGE? ↗</button></div>
+      </div>
+      <div class="tile-grid">
+        <article class="tile"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=700" alt="Salad"><h3>Fresh & Feel-Good</h3><p>Colorful meals and everyday favorites.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=700" alt="Dinner"><h3>Easy Dinners</h3><p>Simple ideas for busy nights.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=700" alt="Dessert"><h3>Something Sweet</h3><p>Because there's always room for dessert.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=700" alt="Groceries"><h3>Trader Joe's Finds</h3><p>Little discoveries worth trying.</p></article>
+      </div>
+    </section>
 
-  <section class="season-banner">
-    <div>
-      <p class="eyebrow">THE SEASONAL EDIT</p>
-      <h2>In our <i>fall era.</i></h2>
-      <p>
-        Cozy layers, dinner with friends, crisp-air walks,
-        and all the little things that make this time of
-        year feel special.
-      </p>
-      <button class="light-link" data-page="holiday">
-        EXPLORE THE SEASON ↗
-      </button>
-    </div>
+    <section id="spaces" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">ROOMS WITH A LITTLE PERSONALITY</p>
+        <h1>Make yourself <em>at home.</em></h1>
+        <p>Collected spaces, interesting details, color, art, and pieces with a story.</p>
+      </div>
+      <div class="editorial-feature">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1100" alt="Colorful interior">
+        <div><p class="eyebrow">THE SPACE EDIT</p><h2>A home should feel like you.</h2><p>Find inspiration in the details: wallpaper, vintage finds, flowers, lighting, and art.</p></div>
+      </div>
+      <div class="tile-grid">
+        <article class="tile"><img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?w=700" alt="Living room"><h3>Living Spaces</h3><p>Rooms made for real life.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=700" alt="Interior details"><h3>Little Details</h3><p>The pieces that make a room.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=700" alt="Home decor"><h3>Decor & Objects</h3><p>Art, lamps, books, and finds.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=700" alt="Flowers"><h3>Flowers & Color</h3><p>Bring a little life inside.</p></article>
+      </div>
+    </section>
 
-    <img src="https://images.unsplash.com/photo-1507371341162-763b5e419408?auto=format&fit=crop&w=1200&q=85"
-      alt="Autumn inspiration">
-  </section>
+    <section id="holiday" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">CELEBRATE THE LITTLE THINGS</p>
+        <h1>The Holiday <em>Edit.</em></h1>
+        <p>Gift ideas, festive recipes, decorating inspiration, and reasons to celebrate.</p>
+      </div>
+      <div class="editorial-feature">
+        <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=1100" alt="Holiday decorations">
+        <div><p class="eyebrow">SEASONAL INSPIRATION</p><h2>Make a little more magic.</h2><p>Ideas for hosting, decorating, gifting, and making memories.</p></div>
+      </div>
+      <div class="tile-grid">
+        <article class="tile"><img src="https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=700" alt="Christmas tree"><h3>Decorating</h3><p>Festive spaces and seasonal touches.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?w=700" alt="Gift wrapping"><h3>Gift Guides</h3><p>Thoughtful gifts for everyone.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=700" alt="Holiday baking"><h3>Holiday Recipes</h3><p>Something delicious to share.</p></article>
+        <article class="tile"><img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=700" alt="Friends celebrating"><h3>Gather Together</h3><p>Ideas for making memories.</p></article>
+      </div>
+    </section>
 
-</main>
+    <section id="quizzes" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">LET'S FIND YOUR NEXT FAVORITE THING</p>
+        <h1>The Quiz <em>Edit.</em></h1>
+        <p>A few questions, a little inspiration, and a plan for your day.</p>
+      </div>
+      <div class="quiz-grid">
+        <article class="quiz-card" onclick="startWeekendQuiz()"><span>01</span><h2>Find Your Weekend Vibe</h2><p>What should you do this weekend?</p><button class="text-button">TAKE THE QUIZ ↗</button></article>
+        <article class="quiz-card" onclick="startFridgeQuiz()"><span>02</span><h2>What's in Your Fridge?</h2><p>Turn the ingredients you have into something delicious.</p><button class="text-button">FIND A RECIPE ↗</button></article>
+        <article class="quiz-card" onclick="startWorkoutQuiz()"><span>03</span><h2>Build My Workout</h2><p>Find a workout that fits your time and mood.</p><button class="text-button">BUILD A WORKOUT ↗</button></article>
+      </div>
+      <div id="quizArea" class="quiz-area">
+        <p class="eyebrow">CHOOSE A QUIZ ABOVE TO GET STARTED</p>
+      </div>
+    </section>
 
-<footer>
-  <a class="wordmark footer-logo" href="#" data-page="home">
-    the everyday <em>edit.</em>
-  </a>
-  <p>A little inspiration for everyday living.</p>
-  <span>MADE FOR THE EVERYDAY ✳</span>
-</footer>
+    <section id="buzz" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">WHAT EVERYONE IS TALKING ABOUT</p>
+        <h1>The <em>Buzz.</em></h1>
+        <p>Creator updates, pop culture, new releases, and what's worth watching.</p>
+      </div>
+      <div class="buzz-heading"><div><p class="eyebrow">THE CREATOR EDIT</p><h2>Who's on our radar.</h2></div><p>Follow along with the creators you're loving lately.</p></div>
+      <div class="creator-grid">
+        <article class="creator-card">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700" alt="Creator style inspiration">
+          <div><h3>Alix Earle</h3><p>Beauty, lifestyle & pop culture</p><a href="https://www.tiktok.com/search?q=Alix%20Earle" target="_blank" rel="noopener">Find her latest TikToks ↗</a><br><a href="https://www.instagram.com/explore/search/keyword/?q=Alix%20Earle" target="_blank" rel="noopener">Find her Instagram ↗</a></div>
+        </article>
+        <article class="creator-card">
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700" alt="Fashion creator inspiration">
+          <div><h3>Riley Saurage</h3><p>Fashion, lifestyle & everyday moments</p><a href="https://www.tiktok.com/search?q=Riley%20Saurage" target="_blank" rel="noopener">Find her latest TikToks ↗</a><br><a href="https://www.instagram.com/explore/search/keyword/?q=Riley%20Saurage" target="_blank" rel="noopener">Find her Instagram ↗</a></div>
+        </article>
+      </div>
+      <div class="embed-note">
+        <h3>Make this your personal creator feed</h3>
+        <p>Paste a public TikTok or Instagram post link below to add it to your page. Social platforms limit automatic access to posts from creators who haven't authorized an app.</p>
+        <input id="socialUrl" type="url" placeholder="Paste a TikTok or Instagram post URL">
+        <button class="dark-button" onclick="addSocialPost()">ADD POST ↗</button>
+        <div id="socialPosts" class="social-posts"></div>
+      </div>
+      <div class="buzz-heading movie-heading"><div><p class="eyebrow">THE MOVIE EDIT</p><h2>Now showing on our radar.</h2></div><button class="dark-button" onclick="loadMovies()">REFRESH MOVIES ↻</button></div>
+      <p class="movie-disclaimer">Trending movies and new discoveries, updated through The Movie Database.</p>
+      <div id="movieGrid" class="movie-grid">
+        <p>Add your TMDB API token in script.js to load current movies.</p>
+      </div>
+    </section>
 
-<script src="script.js"></script>
+    <section id="saved" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">YOUR PERSONAL COLLECTION</p>
+        <h1>Your <em>Saved Edit.</em></h1>
+        <p>All the ideas you want to come back to.</p>
+      </div>
+      <div id="savedGrid" class="saved-grid"><p>You haven't saved anything yet. Explore the site and tap ♡ on something you love.</p></div>
+    </section>
+
+    <section id="searchPage" class="page">
+      <div class="page-heading"><p class="eyebrow">THE EVERYDAY EDIT</p><h1>Search <em>results.</em></h1></div>
+      <div id="searchResults" class="tile-grid"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <a class="logo" href="#" onclick="showPage('home'); return false;">THE EVERYDAY EDIT<span>✳</span></a>
+    <p>A little inspiration for everyday living.</p>
+    <p class="footer-small">A personal lifestyle edit · Made for everyday life</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
